@@ -1,29 +1,188 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Botões com Eventos</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Velocidade Premium - Bicicletas de Alto Desempenho</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <section>
-    <header>
-      <h1>ORGANIZE SEUS ESTUDOS COM INTELIGÊNCIA</h1>
-    </header>
-    <main>
-      <button id="butao">Clique aqui para saber mais</button>
-      <button id="double">Clique aqui duas vezes</button>
-      <button id="passar">Ao passar o mouse por cima</button>
-      <button id="sair">Ao sair o mouse por cima</button>
-      <button id="keydown">Pressione uma tecla</button>
-      <button id="keyup">Solte a tecla</button>
-      <input type="text" id="campoTexto" placeholder="digite aqui">
-      <p id="saida"></p>
-      <input type="text" id="nome" placeholder="Digite seu nome">
+    <div class="hero-bg">
+        <header class="main-header">
+            <div class="container">
+                <div class="logo">Velocidade<span>Premium</span></div>
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Modelos</a></li>
+                        <li><a href="#">Tecnologia</a></li>
+                        <li><a href="#">Contato</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
 
+        <section class="hero">
+            <div class="container">
+                <h1>Eleve seu pedal<br>à excelência</h1>
+                <p>Bicicletas artesanais para ciclistas que exigem performance</p>
+                <button id="heroBtn" class="cta-button">Explore nossos modelos</button>
+            </div>
+        </section>
+    </div>
+
+    <main class="container">
+        <section class="interactive-section">
+            <h2 class="section-title">Experimente a interatividade</h2>
+            
+            <div class="interactive-grid">
+                <div class="interactive-card">
+                    <button id="btnClick" class="interactive-button">
+                        <span class="icon">🛒</span>
+                        <span class="label">Ofertas especiais</span>
+                    </button>
+                </div>
+                
+                <div class="interactive-card">
+                    <button id="btnDoubleClick" class="interactive-button">
+                        <span class="icon">🔍</span>
+                        <span class="label">Detalhes técnicos</span>
+                    </button>
+                </div>
+                
+                <div class="interactive-card">
+                    <button id="btnMouseOver" class="interactive-button">
+                        <span class="icon">🔥</span>
+                        <span class="label">Promoções</span>
+                    </button>
+                </div>
+                
+                <div class="interactive-card">
+                    <button id="btnMouseOut" class="interactive-button">
+                        <span class="icon">👋</span>
+                        <span class="label">Interação</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>Newsletter exclusiva</h3>
+                <form id="signupForm" class="premium-form">
+                    <div class="form-group">
+                        <input type="text" id="nameInput" required>
+                        <label for="nameInput">Seu nome</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="emailInput" required>
+                        <label for="emailInput">Seu melhor e-mail</label>
+                    </div>
+                    <button type="submit" class="submit-btn">
+                        <span>Receber conteúdo premium</span>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </form>
+                <p id="formStatus" class="form-status"></p>
+            </div>
+        </section>
+
+        <section class="featured-bikes">
+            <h2 class="section-title">Nossas Obras-Primas</h2>
+            
+            <div class="bike-gallery">
+                <article class="bike-card">
+                    <div class="bike-image">
+                        <img src="https://images.unsplash.com/photo-1485965120184-e220f721d03e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Strada F1">
+                        <div class="bike-badge">Novo</div>
+                    </div>
+                    <div class="bike-details">
+                        <h3>Strada F1</h3>
+                        <p class="bike-description">Performance de competição em um quadro de fibra de carbono</p>
+                        <div class="bike-price">R$ 14.999</div>
+                        <button class="buy-btn">Personalizar</button>
+                    </div>
+                </article>
+
+                <article class="bike-card">
+                    <div class="bike-image">
+                        <img src="https://images.unsplash.com/photo-1576435728678-68d0fbf94e91?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1528&q=80" alt="Montagna XTR">
+                        <div class="bike-badge">Limited Edition</div>
+                    </div>
+                    <div class="bike-details">
+                        <h3>Montagna XTR</h3>
+                        <p class="bike-description">Domine qualquer terreno com nossa tecnologia de suspensão</p>
+                        <div class="bike-price">R$ 12.499</div>
+                        <button class="buy-btn">Personalizar</button>
+                    </div>
+                </article>
+
+                <article class="bike-card">
+                    <div class="bike-image">
+                        <img src="https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Urbano Elegante">
+                    </div>
+                    <div class="bike-details">
+                        <h3>Urbano Elegante</h3>
+                        <p class="bike-description">Sofisticação e conforto para o dia a dia na cidade</p>
+                        <div class="bike-price">R$ 8.999</div>
+                        <button class="buy-btn">Personalizar</button>
+                    </div>
+                </article>
+            </div>
+        </section>
     </main>
-  </section>
-  <script src="script.js"></script>
+
+    <div class="event-log-container">
+        <div class="container">
+            <h3 class="log-title">Registro de Interações</h3>
+            <div id="logContent" class="log-content"></div>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-brand">
+                <div class="logo">Velocidade<span>Premium</span></div>
+                <p>Elevando o ciclismo à perfeição desde 2010</p>
+            </div>
+            <div class="footer-links">
+                <div class="links-group">
+                    <h4>Produtos</h4>
+                    <ul>
+                        <li><a href="#">Bicicletas</a></li>
+                        <li><a href="#">Componentes</a></li>
+                        <li><a href="#">Vestuário</a></li>
+                        <li><a href="#">Acessórios</a></li>
+                    </ul>
+                </div>
+                <div class="links-group">
+                    <h4>Empresa</h4>
+                    <ul>
+                        <li><a href="#">Sobre nós</a></li>
+                        <li><a href="#">Artigos</a></li>
+                        <li><a href="#">Trabalhe conosco</a></li>
+                        <li><a href="#">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="links-group">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Termos</a></li>
+                        <li><a href="#">Privacidade</a></li>
+                        <li><a href="#">Cookies</a></li>
+                        <li><a href="#">Garantia</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <div class="container">
+                <p>&copy; 2025 Velocidade Premium. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>

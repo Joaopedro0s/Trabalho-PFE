@@ -1,86 +1,90 @@
+// Função para registrar eventos no log
+function logEvent(message) {
+    const eventLog = document.getElementById("logContent");
+    const timestamp = new Date().toLocaleTimeString();
+    eventLog.innerHTML += `[${timestamp}] ${message}<br>`;
+    eventLog.scrollTop = eventLog.scrollHeight;
+}
+
 // Evento de clique simples
-document.getElementById("butao")
-.addEventListener("click", function(){
-    alert("Você clicou no botão!");
+document.getElementById("btnClick")
+.addEventListener("click", function() {
+    logEvent("Botão de ofertas clicado - Mostrando promoções");
+    alert("Confira nossas ofertas especiais!\n\n• SpeedBike Pro: 10% off\n• MountainBike XT: Frete grátis\n• UrbanBike Comfort: 15% off");
 });
 
 // Evento de duplo clique
-document.getElementById("double")
-.addEventListener("dblclick", function(){
-    alert("Você clicou duas vezes!");
+document.getElementById("btnDoubleClick")
+.addEventListener("dblclick", function() {
+    logEvent("Duplo clique - Mostrando detalhes das bicicletas");
+    alert("Detalhes técnicos:\n\nSpeedBike Pro: 21 marchas, quadro de carbono\nMountainBike XT: Suspensão dianteira, pneus largos\nUrbanBike Comfort: Selim ergonômico, bagageiro traseiro");
 });
 
 // Evento de mouseover
-document.getElementById("passar")
-.addEventListener("mouseover", function(){
-    alert("Mouse passou por cima!");
+document.getElementById("btnMouseOver")
+.addEventListener("mouseover", function() {
+    logEvent("Mouse sobre botão de promoções");
+    this.classList.add("highlight");
 });
 
 // Evento de mouseout
-document.getElementById("sair")
-.addEventListener("mouseout", function(){
-    alert("Mouse saiu de cima do botão!");
+document.getElementById("btnMouseOut")
+.addEventListener("mouseout", function() {
+    logEvent("Mouse saiu do botão");
+    this.classList.remove("highlight");
 });
 
 // Evento de keydown
 document.addEventListener("keydown", () => {
-    const btn = document.getElementById("keydown");
+    const btn = document.getElementById("btnKeyDown");
     btn.classList.add("pressionado");
+    logEvent(`Tecla pressionada`);
 });
 
 // Evento de keyup
 document.addEventListener("keyup", () => {
-    const btn = document.getElementById("keyup");
+    const btn = document.getElementById("btnKeyUp");
     btn.classList.add("solto");
+    logEvent(`Tecla liberada`);
 
     setTimeout(() => {
         btn.classList.remove("solto");
-        document.getElementById("keydown").classList.remove("pressionado");
+        document.getElementById("btnKeyDown").classList.remove("pressionado");
     }, 500);
-    
 });
 
 // Evento de input
-const campo = document.getElementById("campoTexto");
-const saida = document.getElementById("saida");
+const searchInput = document.getElementById("searchInput");
+const searchOutput = document.getElementById("searchOutput");
 
-campo.addEventListener("input", function () {
-  saida.textContent = "Você digitou: " + campo.value;
+searchInput.addEventListener("input", function() {
+    searchOutput.textContent = this.value ? `Pesquisando por: ${this.value}` : "";
+    logEvent(`Pesquisa digitada: ${this.value}`);
 });
 
 // Evento de change
-document.getElementById("nome").addEventListener("change", function() {
-    saida.textContent = "Você terminou de digitar: " + this.value;
-});
-
-// Eventos de focus e blur
-document.getElementById("meuCampo").addEventListener("focus", function () {
-    document.getElementById("mensagem").textContent = "O campo foi focado!";
-});
-
-document.getElementById("meuCampo").addEventListener("blur", function () {
-    document.getElementById("mensagem").textContent = "Você saiu do campo!";
+document.getElementById("nameInput").addEventListener("change", function() {
+    logEvent(`Nome completo digitado: ${this.value}`);
 });
 
 // Evento de submit do formulário
-document.getElementById("meuFormulario").addEventListener("submit", function(e) {
+document.getElementById("signupForm").addEventListener("submit", function(e) {
     e.preventDefault();
-    
-    const nome = document.getElementById("nomeForm").value;
-    const email = document.getElementById("emailForm").value;
-    const mensagem = document.getElementById("mensagemForm").value;
-    
-    document.getElementById("formStatus").textContent = `Obrigado, ${nome}! Sua mensagem foi enviada.`;
-    document.getElementById("formStatus").style.color = "green";
-    
-    
+
+    const name = document.getElementById("nameInput").value;
+    const email = document.getElementById("emailInput").value;
+
+    document.getElementById("formStatus").textContent = `Obrigado, ${name}! Seu cadastro foi recebido. Em breve enviaremos ofertas para ${email}.`;
+    logEvent(`Formulário enviado: Nome: ${name}, Email: ${email}`);
+
     // Limpa o formulário
     this.reset();
 });
 
 // Evento de load
-window.addEventListener("load", function (event) {
+window.addEventListener("load", function() {
     logEvent("Página totalmente carregada");
+    console.log("Página carregada com sucesso!");
 });
 
 // Evento de resize
@@ -88,10 +92,12 @@ window.addEventListener('resize', function() {
     logEvent(`Janela redimensionada: Largura: ${window.innerWidth}, Altura: ${window.innerHeight}`);
 });
 
-// Função para registrar eventos no log
-function logEvent(message) {
-    const eventLog = document.getElementById("eventLog");
-    const timestamp = new Date().toLocaleTimeString();
-    eventLog.innerHTML += `[${timestamp}] ${message}<br>`;
-    eventLog.scrollTop = eventLog.scrollHeight;
-}
+// Adiciona eventos aos botões de compra
+document.querySelectorAll('.buy-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        const bikeName = this.parentElement.querySelector('h3').textContent;
+        const bikePrice = this.parentElement.querySelector('p').textContent;
+        logEvent(`Botão de compra clicado: ${bikeName} - ${bikePrice}`);
+        alert(`Você selecionou: ${bikeName}\n${bikePrice}\n\nRedirecionando para o checkout...`);
+    });
+});
