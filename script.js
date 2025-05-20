@@ -35,3 +35,16 @@ document.addEventListener("keyup", () => {
         document.getElementById("keydown").classList.remove("pressionado");
     }, 500);
 });
+
+const campo = document.getElementById("campoTexto");
+const saida = document.getElementById("saida");
+
+campo.addEventListener("input", function () {
+  saida.textContent = "Você digitou: " + campo.value;
+});
+
+document.getElementById("nome").addEventListener("change", function() {
+    saida.textContent = "Você terminou de digitar: " + this.value;
+  });
+  
+
