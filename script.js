@@ -1,77 +1,37 @@
-// Função para registrar eventos na área de log
-function logEvent(eventName, targetId = '') {
-    const log = document.getElementById('logContent');
-    const time = new Date().toLocaleTimeString();
-    log.innerHTML += `<p>[${time}] Evento: <strong>${eventName}</strong> ${targetId ? `em <em>#${targetId}</em>` : ''}</p>`;
-    log.scrollTop = log.scrollHeight;
-}
-
-// Eventos de clique
-document.getElementById('heroBtn').addEventListener('click', () => {
-    alert("Clicado")
+// Botões interativos
+document.getElementById("btnClick").addEventListener("click", () => {
+    alert("Você clicou em Ofertas Especiais!");
 });
 
-document.getElementById('btnDoubleClick').addEventListener('dblclick', () => {
-    logEvent('dblclick', 'btnDoubleClick');
+document.getElementById("btnDoubleClick").addEventListener("dblclick", () => {
+    alert("Você clicou duas vezes em Detalhes Técnicos!");
 });
 
-document.getElementById('btnMouseOver').addEventListener('mouseover', () => {
-    logEvent('mouseover', 'btnMouseOver');
+document.getElementById("btnMouseOver").addEventListener("mouseover", () => {
+    alert("Você passou o mouse sobre Promoções!");
 });
 
-document.getElementById('btnMouseOut').addEventListener('mouseout', () => {
-    logEvent('mouseout', 'btnMouseOut');
+document.getElementById("btnMouseOut").addEventListener("mouseout", () => {
+    alert("Você tirou o mouse de cima de Interação!");
 });
 
-// Eventos de teclado
-document.addEventListener('keydown', (e) => {
-    logEvent(`keydown (tecla: ${e.key})`);
-});
-
-document.addEventListener('keyup', (e) => {
-    logEvent(`keyup (tecla: ${e.key})`);
-});
-
-// Eventos de formulário
-document.getElementById('nameInput').addEventListener('input', () => {
-    logEvent('input', 'nameInput');
-});
-document.getElementById('emailInput').addEventListener('input', () => {
-    logEvent('input', 'emailInput');
-});
-
-document.getElementById('nameInput').addEventListener('change', () => {
-    logEvent('change', 'nameInput');
-});
-document.getElementById('emailInput').addEventListener('change', () => {
-    logEvent('change', 'emailInput');
-});
-
-document.getElementById('nameInput').addEventListener('focus', () => {
-    logEvent('focus', 'nameInput');
-});
-document.getElementById('emailInput').addEventListener('focus', () => {
-    logEvent('focus', 'emailInput');
-});
-
-document.getElementById('nameInput').addEventListener('blur', () => {
-    logEvent('blur', 'nameInput');
-});
-document.getElementById('emailInput').addEventListener('blur', () => {
-    logEvent('blur', 'emailInput');
-});
-
-document.getElementById('signupForm').addEventListener('submit', (e) => {
+// Formulário
+document.getElementById("signupForm").addEventListener("submit", function (e) {
     e.preventDefault();
-    logEvent('submit', 'signupForm');
-    document.getElementById('formStatus').textContent = 'Cadastro realizado com sucesso!';
+    const nome = document.getElementById("nameInput").value;
+    const email = document.getElementById("emailInput").value;
+
+    document.getElementById("formStatus").textContent =
+        `Obrigado, ${nome}! Conteúdo premium será enviado para ${email}.`;
 });
 
-// Eventos da janela
-window.addEventListener('load', () => {
-    logEvent('load (página carregada)');
+// Keydown e Keyup (teclado)
+document.addEventListener("keydown", (event) => {
+    const log = document.getElementById("logContent");
+    log.innerHTML = `<p><strong>Tecla pressionada:</strong> ${event.key}</p>`;
 });
 
-window.addEventListener('resize', () => {
-    logEvent(`resize (nova largura: ${window.innerWidth}px)`);
+document.addEventListener("keyup", (event) => {
+    const log = document.getElementById("logContent");
+    log.innerHTML += `<p><strong>Tecla liberada:</strong> ${event.key}</p>`;
 });
