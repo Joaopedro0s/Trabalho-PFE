@@ -1,103 +1,77 @@
-// Função para registrar eventos no log
-function logEvent(message) {
-    const eventLog = document.getElementById("logContent");
-    const timestamp = new Date().toLocaleTimeString();
-    eventLog.innerHTML += `[${timestamp}] ${message}<br>`;
-    eventLog.scrollTop = eventLog.scrollHeight;
+// Função para registrar eventos na área de log
+function logEvent(eventName, targetId = '') {
+    const log = document.getElementById('logContent');
+    const time = new Date().toLocaleTimeString();
+    log.innerHTML += `<p>[${time}] Evento: <strong>${eventName}</strong> ${targetId ? `em <em>#${targetId}</em>` : ''}</p>`;
+    log.scrollTop = log.scrollHeight;
 }
 
-// Evento de clique simples
-document.getElementById("btnClick")
-.addEventListener("click", function() {
-    logEvent("Botão de ofertas clicado - Mostrando promoções");
-    alert("Confira nossas ofertas especiais!\n\n• SpeedBike Pro: 10% off\n• MountainBike XT: Frete grátis\n• UrbanBike Comfort: 15% off");
+// Eventos de clique
+document.getElementById('heroBtn').addEventListener('click', () => {
+    alert("Clicado")
 });
 
-// Evento de duplo clique
-document.getElementById("btnDoubleClick")
-.addEventListener("dblclick", function() {
-    logEvent("Duplo clique - Mostrando detalhes das bicicletas");
-    alert("Detalhes técnicos:\n\nSpeedBike Pro: 21 marchas, quadro de carbono\nMountainBike XT: Suspensão dianteira, pneus largos\nUrbanBike Comfort: Selim ergonômico, bagageiro traseiro");
+document.getElementById('btnDoubleClick').addEventListener('dblclick', () => {
+    logEvent('dblclick', 'btnDoubleClick');
 });
 
-// Evento de mouseover
-document.getElementById("btnMouseOver")
-.addEventListener("mouseover", function() {
-    logEvent("Mouse sobre botão de promoções");
-    this.classList.add("highlight");
+document.getElementById('btnMouseOver').addEventListener('mouseover', () => {
+    logEvent('mouseover', 'btnMouseOver');
 });
 
-// Evento de mouseout
-document.getElementById("btnMouseOut")
-.addEventListener("mouseout", function() {
-    logEvent("Mouse saiu do botão");
-    this.classList.remove("highlight");
+document.getElementById('btnMouseOut').addEventListener('mouseout', () => {
+    logEvent('mouseout', 'btnMouseOut');
 });
 
-// Evento de keydown
-document.addEventListener("keydown", () => {
-    const btn = document.getElementById("btnKeyDown");
-    btn.classList.add("pressionado");
-    logEvent(`Tecla pressionada`);
+// Eventos de teclado
+document.addEventListener('keydown', (e) => {
+    logEvent(`keydown (tecla: ${e.key})`);
 });
 
-// Evento de keyup
-document.addEventListener("keyup", () => {
-    const btn = document.getElementById("btnKeyUp");
-    btn.classList.add("solto");
-    logEvent(`Tecla liberada`);
-
-    setTimeout(() => {
-        btn.classList.remove("solto");
-        document.getElementById("btnKeyDown").classList.remove("pressionado");
-    }, 500);
+document.addEventListener('keyup', (e) => {
+    logEvent(`keyup (tecla: ${e.key})`);
 });
 
-// Evento de input
-const searchInput = document.getElementById("searchInput");
-const searchOutput = document.getElementById("searchOutput");
-
-searchInput.addEventListener("input", function() {
-    searchOutput.textContent = this.value ? `Pesquisando por: ${this.value}` : "";
-    logEvent(`Pesquisa digitada: ${this.value}`);
+// Eventos de formulário
+document.getElementById('nameInput').addEventListener('input', () => {
+    logEvent('input', 'nameInput');
+});
+document.getElementById('emailInput').addEventListener('input', () => {
+    logEvent('input', 'emailInput');
 });
 
-// Evento de change
-document.getElementById("nameInput").addEventListener("change", function() {
-    logEvent(`Nome completo digitado: ${this.value}`);
+document.getElementById('nameInput').addEventListener('change', () => {
+    logEvent('change', 'nameInput');
+});
+document.getElementById('emailInput').addEventListener('change', () => {
+    logEvent('change', 'emailInput');
 });
 
-// Evento de submit do formulário
-document.getElementById("signupForm").addEventListener("submit", function(e) {
+document.getElementById('nameInput').addEventListener('focus', () => {
+    logEvent('focus', 'nameInput');
+});
+document.getElementById('emailInput').addEventListener('focus', () => {
+    logEvent('focus', 'emailInput');
+});
+
+document.getElementById('nameInput').addEventListener('blur', () => {
+    logEvent('blur', 'nameInput');
+});
+document.getElementById('emailInput').addEventListener('blur', () => {
+    logEvent('blur', 'emailInput');
+});
+
+document.getElementById('signupForm').addEventListener('submit', (e) => {
     e.preventDefault();
-
-    const name = document.getElementById("nameInput").value;
-    const email = document.getElementById("emailInput").value;
-
-    document.getElementById("formStatus").textContent = `Obrigado, ${name}! Seu cadastro foi recebido. Em breve enviaremos ofertas para ${email}.`;
-    logEvent(`Formulário enviado: Nome: ${name}, Email: ${email}`);
-
-    // Limpa o formulário
-    this.reset();
+    logEvent('submit', 'signupForm');
+    document.getElementById('formStatus').textContent = 'Cadastro realizado com sucesso!';
 });
 
-// Evento de load
-window.addEventListener("load", function() {
-    logEvent("Página totalmente carregada");
-    console.log("Página carregada com sucesso!");
+// Eventos da janela
+window.addEventListener('load', () => {
+    logEvent('load (página carregada)');
 });
 
-// Evento de resize
-window.addEventListener('resize', function() {
-    logEvent(`Janela redimensionada: Largura: ${window.innerWidth}, Altura: ${window.innerHeight}`);
-});
-
-// Adiciona eventos aos botões de compra
-document.querySelectorAll('.buy-btn').forEach(btn => {
-    btn.addEventListener('click', function() {
-        const bikeName = this.parentElement.querySelector('h3').textContent;
-        const bikePrice = this.parentElement.querySelector('p').textContent;
-        logEvent(`Botão de compra clicado: ${bikeName} - ${bikePrice}`);
-        alert(`Você selecionou: ${bikeName}\n${bikePrice}\n\nRedirecionando para o checkout...`);
-    });
+window.addEventListener('resize', () => {
+    logEvent(`resize (nova largura: ${window.innerWidth}px)`);
 });
